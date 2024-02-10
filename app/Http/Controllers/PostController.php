@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -35,10 +36,12 @@ class PostController extends Controller
     }
 
     public function edit(Post $post){
+        Gate::authorize('edit-delete-post',$post);
         return view('posts.post-edit',compact('post'));
     }
 
     public function update(Request $request, Post $post){
+        Gate::authorize('edit-delete-post',$post);
         $this->validate($request,[
             'title'=>'required|string',
             'body'=>'required|string'
@@ -57,6 +60,7 @@ class PostController extends Controller
     }
 
     public function destroy(Post $post){
+        Gate::authorize('edit-delete-post',$post);
         $deleted = $post->delete();
         if(!$deleted)
         {

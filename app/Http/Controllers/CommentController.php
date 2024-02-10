@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class CommentController extends Controller
 {
@@ -26,6 +27,7 @@ class CommentController extends Controller
     }
 
     public function edit(Comment $comment){
+        Gate::authorize('edit-comment',$comment);
         return view('comments.comment-edit',compact('comment'));
     }
 
@@ -45,6 +47,11 @@ class CommentController extends Controller
     }
 
     public function destroy(Comment $comment){
+        $post = $comment->post;
+
+        //wrap as array because of authorize method behaviour, first arg as gate name & second as param
+        Gate::authorize('delete-comment',[$comment, $post]);
+        
         $deleted = $comment->delete();
         if(!$deleted)
         {
