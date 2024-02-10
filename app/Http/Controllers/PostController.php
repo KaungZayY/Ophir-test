@@ -9,7 +9,7 @@ class PostController extends Controller
 {
 
     public function index(){
-        $posts = Post::paginate();
+        $posts = Post::latest()->paginate();
         return view('dashboard',compact('posts'));
     }
 
@@ -69,7 +69,7 @@ class PostController extends Controller
     }
 
     public function detail(Post $post){
-        $comments = $post->comments()->with('user')->paginate();
+        $comments = $post->comments()->latest()->with('user')->paginate();
         return view('posts.post-detail',compact('post','comments'));
     }
 }

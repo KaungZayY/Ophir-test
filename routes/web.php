@@ -37,6 +37,9 @@ Route::middleware('auth')->group(function () {
 
     //Comments
     Route::post('post{post}/comment/create',[CommentController::class, 'store'])->name('comment.store');
+    Route::get('/comment{comment}/edit',[CommentController::class, 'edit'])->name('comment.edit');
+    Route::post('/comment{comment}/edit',[CommentController::class, 'update']);
+    Route::delete('/comment{comment}/delete',[CommentController::class, 'destroy'])->name('comment.delete');
 });
 
 require __DIR__.'/auth.php';

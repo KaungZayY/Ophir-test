@@ -85,11 +85,11 @@
                                         <p class="text-gray-600 dark:text-gray-400">{{ $comment->text }}</p>
                                     </div>
                                     <div class="inline-block hidden menu-buttons">
-                                        <form action="#" method="GET">
+                                        <form action="{{route('comment.edit',$comment->id)}}" method="GET">
                                             <button
                                                 class="bg-green-500 text-white px-2 py-1 mb-2 rounded-md w-full">Edit</button>
                                         </form>
-                                        <form action="#" method="POST">
+                                        <form action="{{route('comment.delete',$comment->id)}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button
