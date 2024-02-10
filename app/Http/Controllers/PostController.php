@@ -11,6 +11,7 @@ class PostController extends Controller
 
     public function index(){
         $posts = Post::latest()->paginate();
+        $posts->load('user');
         return view('dashboard',compact('posts'));
     }
 

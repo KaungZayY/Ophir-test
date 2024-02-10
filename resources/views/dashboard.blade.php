@@ -25,6 +25,10 @@
                         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg mb-4 post">
                             <div class="p-6 flex flex-col">
                                 <div class="flex flex-row justify-between">
+                                    <h1 class="text-lg font-bold text-green-400 dark:text-green-600 uppercase">{{$post->user->name}}</h1>
+                                    <p class="text-sm text-gray-500" style="margin-left: auto">{{ $post->created_at->diffForHumans() }}</p>
+                                </div>
+                                <div class="flex flex-row justify-between">
                                     <h3 class="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-2">{{ $post->title }}</h3>
                                     @can('edit-delete-post', $post)
                                         <button onclick="toggleDropdownMenu(this)">
