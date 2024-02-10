@@ -35,7 +35,7 @@
                                 <div class="flex flex-row justify-between">
                                     <div class="flex flex-col">
                                         <p class="text-gray-600 dark:text-gray-400">{{ $post->body }}</p>
-                                        <a href="#" class="text-sm text-blue-500 hover:text-blue-700 mt-4">View Post</a>
+                                        <a href="{{route('post.detail',$post->id)}}" class="text-sm text-blue-500 hover:text-blue-700 mt-4">View Post</a>
                                     </div>
                                     <div class="inline-block hidden menu-buttons">
                                         <form action="{{route('post.edit',$post->id)}}" method="GET">

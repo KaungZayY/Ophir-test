@@ -67,4 +67,9 @@ class PostController extends Controller
             return redirect()->route('dashboard')->with('success', 'You had Deleted the Post'); 
         }
     }
+
+    public function detail(Post $post){
+        $comments = $post->comments()->with('user')->paginate();
+        return view('posts.post-detail',compact('post','comments'));
+    }
 }

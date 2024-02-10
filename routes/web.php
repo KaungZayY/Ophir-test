@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -32,6 +33,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/post/edit{post}',[PostController::class, 'edit'])->name('post.edit');
     Route::post('/post/edit{post}',[PostController::class, 'update'])->name('post.update');
     Route::delete('/post/delete{post}',[PostController::class, 'destroy'])->name('post.delete');
+    Route::get('/post{post}/detail',[PostController::class, 'detail'])->name('post.detail');
+
+    //Comments
+    Route::post('post{post}/comment/create',[CommentController::class, 'store'])->name('comment.store');
 });
 
 require __DIR__.'/auth.php';
