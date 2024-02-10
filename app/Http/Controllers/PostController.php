@@ -33,4 +33,38 @@ class PostController extends Controller
             return redirect()->route('dashboard')->with('success', 'Upload successful');
         }
     }
+
+    public function edit(Post $post){
+        return view('posts.post-edit',compact('post'));
+    }
+
+    public function update(Request $request, Post $post){
+        $this->validate($request,[
+            'title'=>'required|string',
+            'body'=>'required|string'
+        ]);
+
+        $updated=$post->update([
+            'title'=>$request->title,
+            'body'=>$request->body,
+        ]);
+
+        if (!$updated) {
+            return back()->with('error', 'Cannot Update at the moment');
+        } else {
+            return redirect()->route('dashboard')->with('success', 'Updated successfully');
+        }
+    }
+
+    public function destroy(Post $post){
+        $deleted = $post->delete();
+        if(!$deleted)
+        {
+            return redirect()->route('dashboard')->with('error','Cannot Delete this Post');
+        }
+        else
+        {
+            return redirect()->route('dashboard')->with('success', 'You had Deleted the Post'); 
+        }
+    }
 }

@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     //Posts
     Route::get('/post/create',[PostController::class, 'create'])->name('post.create');
     Route::post('/post/create',[PostController::class, 'store']);
+    Route::get('/post/edit{post}',[PostController::class, 'edit'])->name('post.edit');
+    Route::post('/post/edit{post}',[PostController::class, 'update'])->name('post.update');
+    Route::delete('/post/delete{post}',[PostController::class, 'destroy'])->name('post.delete');
 });
 
 require __DIR__.'/auth.php';

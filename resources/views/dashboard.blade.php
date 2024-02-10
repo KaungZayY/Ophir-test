@@ -37,8 +37,14 @@
                                     <a href="#" class="text-sm text-blue-500 hover:text-blue-700 mt-4">View Post</a>
                                 </div>
                                 <div class="inline-block hidden menu-buttons">
-                                    <button class="bg-green-500 text-white px-2 py-1 mb-2 rounded-md w-full">Edit</button>
-                                    <button class="bg-red-500 text-white px-2 py-1 mb-2 rounded-md w-full">Delete</button>
+                                    <form action="{{route('post.edit',$post->id)}}" method="GET">
+                                        <button class="bg-green-500 text-white px-2 py-1 mb-2 rounded-md w-full">Edit</button>
+                                    </form>
+                                    <form action="{{route('post.delete',$post->id)}}" method="POST">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button class="bg-red-500 text-white px-2 py-1 mb-2 rounded-md w-full">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
